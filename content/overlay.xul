@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://alexpic/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://alexpic/locale/overlay.dtd">
+<overlay id="alexpic-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="utili.js"/>
+  <script src="file.js"/>
+  <script src="find.js"/>
+  <script src="upload.js"/>
+  <script src="gheader.js"/>
+  <script src="init.js"/>
+  
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="alexpic-strings" src="chrome://alexpic/locale/overlay.properties"/>
+  </stringbundleset>
+
+  
+  <menupopup  id="contentAreaContextMenu">
+    <menu id="ooi_pic" label="&alexpic.ooi_pic;">
+      <menupopup>
+        <menuitem  label="&alexpic.ooi_pic_copy;"
+                   insertafter="context-back"
+                   oncommand="AlexPic.file.complete(new Find(gContextMenu.target))">           
+        </menuitem>
+      </menupopup>
+    </menu>            
+  </menupopup>           
+
+  <menupopup  id="contentAreaContextMenu">   
+     <menuitem id="o_pics_paste"  label="&alexpic.o_pics_paste;"
+                   insertafter="context-back"
+                   oncommand="AlexPic.upload.submit(new Find(gContextMenu.target))">           
+     </menuitem>           
+  </menupopup>                
+  
+
+ 
+</overlay>

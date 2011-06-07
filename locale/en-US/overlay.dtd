@@ -1,0 +1,8 @@
+<!ENTITY alexpic.label "Your localized menuitem">
+<!ENTITY alexpicContext.label "Your Menuitem">
+<!ENTITY alexpicContext.accesskey "Y">
+<!ENTITY alexpicToolbarButton.label "Your Toolbar Button">
+<!ENTITY alexpicToolbarButton.tooltip "This is your toolbar button!">
+<!ENTITY alexpicSidebar.label "Your Sidebar">
+<!ENTITY alexpicToolbar.name  "example">
+<!ENTITY alexpicToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &alexpicToolbar.name;">
