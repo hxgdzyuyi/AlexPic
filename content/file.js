@@ -37,7 +37,7 @@ File.getTempDir = function(){
            get("ProfD", Components.interfaces.nsIFile);
   //DefRt https://developer.mozilla.org/en/Code_snippets/File_I%2f%2fO           
   var r = file.path;
-  return r;//ok  
+  return r;  
 }
 
 

@@ -8,7 +8,7 @@ Upload.submit = function(find){
   this.node = find.getInputFile();
 
   if(find.findFlag == 1){    
-    this.node.value = gPasteFilePath;  
+    this.node.value = gPasteFilePath; 	
     this.simulateChange(this.node);
   }
 }

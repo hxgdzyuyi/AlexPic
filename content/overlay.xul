@@ -2,11 +2,11 @@
 <?xml-stylesheet href="chrome://alexpic/skin/overlay.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://alexpic/locale/overlay.dtd">
 <overlay id="alexpic-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="gheader.js"/>
   <script src="utili.js"/>
   <script src="file.js"/>
   <script src="find.js"/>
   <script src="upload.js"/>
-  <script src="gheader.js"/>
   <script src="init.js"/>
   
 

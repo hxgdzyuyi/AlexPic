@@ -17,4 +17,5 @@ AlexPic.init= {
   }                  
                    
 };
+AlexPic.upload = Upload;
 window.addEventListener("load",AlexPic.init.showItem,false);
