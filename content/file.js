@@ -1,36 +1,6 @@
 var File = {
 };
 
-File.getFileName = function(iUrl){  
-  var r = "";
-  var nameExistFlag = 1;
-
-  if(iUrl.charAt(iUrl.length - 1)=="/"){
-    nameExistFlag = 0;
-  }
-
-  var fileName = iUrl.substring(iUrl.lastIndexOf('/')+1);    
-  
-  if(fileName.lastIndexOf('.') == -1 ){
-    nameExistFlag = 0;      
-  }else{
-    var fileTypeName = fileName.substring(fileName.lastIndexOf('.')+1);
-    if(fileTypeName.length > 4){
-    nameExistFlag = 0;
-    }
-  }
-
-  if(nameExistFlag == 0){
-     var t = new Date().getTime(); 
-     r = t + ".jpg";
-  }else{
-     r = fileName;
-  }
-  
-  return r;
-  
-}
-
 File.getTempDir = function(){
   var file = Components.classes["@mozilla.org/file/directory_service;1"].
            getService(Components.interfaces.nsIProperties).
@@ -39,8 +9,6 @@ File.getTempDir = function(){
   var r = file.path;
   return r;  
 }
-
-
 
 File.save = function(iUrl,oFileName,oDir,cbComplete){
   var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
@@ -80,7 +48,7 @@ File.save = function(iUrl,oFileName,oDir,cbComplete){
 
 File.getFileFormPath = function(filePath){
   var file = Components.classes['@mozilla.org/file/local;1']
-                     .createInstance(Components.interfaces.nsILocalFile);
+             .createInstance(Components.interfaces.nsILocalFile);
   file.initWithPath(filePath);
   return file;  
 }
@@ -93,25 +61,21 @@ File.remove = function(filePath){
   file.remove(true);
   }catch(e){
     alert(e);
-  }
-
-
-  
-  alert("ok");
-  
+  }   
 }
 
-File.test = function(){
-  this.complete();
-}
-File.complete = function(find){
-  if(gPasteFilePath.lengah > 3 ){
+
+AlexPic.file = Object.create(File);
+
+AlexPic.file.complete = function(find){
+  if(gPasteFilePath.length > 3 ){
     this.remove(gPasteFilePath);
-  }
+  }  
   var saveFlag = 0;  
   var saveSrc = find.getImgSrc();
   if(find.findFlag == 1){
     var saveFileName = this.getFileName(saveSrc);
+    
     //const nsIFilePicker = Components.interfaces.nsIFilePicker;
     //var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
     //fp.init(window, "asdf", nsIFilePicker.modeGetFolder);
@@ -123,8 +87,35 @@ File.complete = function(find){
         gPasteFilePathFlag = 1;
         alert("You can use AlexPic Paste");
     });
-  }
- 
+  } 
 }
 
+AlexPic.file.getFileName = function(iUrl){
+  var r = "";
+  var nameExistFlag = 1;
 
+  if(iUrl.charAt(iUrl.length - 1)=="/"){
+    nameExistFlag = 0;
+  }
+
+  var fileName = iUrl.substring(iUrl.lastIndexOf('/')+1);    
+  
+  if(fileName.lastIndexOf('.') == -1 ){
+    nameExistFlag = 0;      
+  }else{
+    var fileTypeName = fileName.substring(fileName.lastIndexOf('.')+1);
+    if(fileTypeName.length > 4){
+    nameExistFlag = 0;
+    }
+  }
+
+  if(nameExistFlag == 0){
+     var t = new Date().getTime(); 
+     r = t + ".jpg";
+  }else{
+     r = fileName;
+  }
+  
+  return r;
+  
+}
