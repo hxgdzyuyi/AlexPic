@@ -55,10 +55,9 @@ File.getFileFormPath = function(filePath){
 
 File.remove = function(filePath){
   var file = this.getFileFormPath(filePath);
-  alert(file.path);
 
   try{
-  file.remove(true);
+  file.remove(true);  
   }catch(e){
     alert(e);
   }   
@@ -85,7 +84,8 @@ AlexPic.file.complete = function(find){
       ,function(filepath){        
         gPasteFilePath = filepath;
         gPasteFilePathFlag = 1;
-        alert("You can use AlexPic Paste");
+        AlexPic.noti.showToast("You can use AlexPic Paste");
+        //alert("ok");
     });
   } 
 }

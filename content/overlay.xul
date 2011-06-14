@@ -6,6 +6,7 @@
   <script src="utili.js"/>
   <script src="file.js"/>
   <script src="find.js"/>
+  <script src="notifications.js"/>
   <script src="upload.js"/>
   <script src="init.js"/>
   
@@ -16,10 +17,10 @@
 
   
   <menupopup  id="contentAreaContextMenu">
-    <menu id="ooi_pic" label="&alexpic.ooi_pic;">
+    <menu id="ooi_pic" label="&alexpic.ooi_pic;" class="menu-iconic" 
+                       image="chrome://alexpic/skin/menuitem.png">
       <menupopup>
-        <menuitem  label="&alexpic.ooi_pic_copy;"
-                   insertafter="context-back"
+        <menuitem  label="&alexpic.ooi_pic_copy;"                                       
                    oncommand="AlexPic.file.complete(new Find(gContextMenu.target))">           
         </menuitem>
       </menupopup>
@@ -27,9 +28,10 @@
   </menupopup>           
 
   <menupopup  id="contentAreaContextMenu">   
-     <menuitem id="o_pics_paste"  label="&alexpic.o_pics_paste;"
-                   insertafter="context-back"
-                   oncommand="AlexPic.upload.submit(new Find(gContextMenu.target))">           
+    <menuitem id="o_pics_paste"  label="&alexpic.o_pics_paste;"
+              class="menuitem-iconic"
+              image="chrome://alexpic/skin/menuitem.png"
+              oncommand="AlexPic.upload.submit(new Find(gContextMenu.target))">           
      </menuitem>           
   </menupopup>                
   
