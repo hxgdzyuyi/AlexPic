@@ -5,7 +5,7 @@ function Find(node){
   this.node = XPCNativeWrapper.unwrap(node);
 }
 Find.prototype.getImgSrc = function(){
-  this.findFlag = 1;
+  this.findFlag = 1;  
   return this.node.src;
 }
 Find.prototype.getInputFile = function(){
@@ -30,7 +30,7 @@ Find.prototype._getForm = function(node){
     }
 
     if(node.nodeName == "BODY"){
-      alert("error");
+      AlexPic.noti.showToast("can't find input");
     }else{
       node = node.parentNode;
       return this._getForm(node);
@@ -38,7 +38,7 @@ Find.prototype._getForm = function(node){
 
   }else{
     if(node.nodeName == "BODY"){
-      alert("error");
+      AlexPic.noti.showToast("can't find input");
     }else{
       node = node.parentNode;
       return this._getForm(node);

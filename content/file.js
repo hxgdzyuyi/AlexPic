@@ -66,28 +66,25 @@ File.remove = function(filePath){
 
 AlexPic.file = Object.create(File);
 
-AlexPic.file.complete = function(find){
+AlexPic.file.complete = function(saveSrc){
   if(gPasteFilePath.length > 3 ){
     this.remove(gPasteFilePath);
   }  
-  var saveFlag = 0;  
-  var saveSrc = find.getImgSrc();
-  if(find.findFlag == 1){
-    var saveFileName = this.getFileName(saveSrc);
-    
-    //const nsIFilePicker = Components.interfaces.nsIFilePicker;
-    //var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-    //fp.init(window, "asdf", nsIFilePicker.modeGetFolder);
-    //fp.show();
-    var oDir = this.getTempDir();
-    this.save(saveSrc,saveFileName,oDir
-      ,function(filepath){        
-        gPasteFilePath = filepath;
-        gPasteFilePathFlag = 1;
-        AlexPic.noti.showToast("You can use AlexPic Paste");
-        //alert("ok");
-    });
-  } 
+  alert(saveSrc);
+  var saveFileName = this.getFileName(saveSrc);
+  
+  //const nsIFilePicker = Components.interfaces.nsIFilePicker;
+  //var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+  //fp.init(window, "asdf", nsIFilePicker.modeGetFolder);
+  //fp.show();
+  var oDir = this.getTempDir();
+  this.save(saveSrc,saveFileName,oDir
+    ,function(filepath){        
+      gPasteFilePath = filepath;
+      gPasteFilePathFlag = 1;
+      AlexPic.noti.showToast("You can use AlexPic Paste");
+      //alert("ok");
+  });
 }
 
 AlexPic.file.getFileName = function(iUrl){
@@ -109,13 +106,39 @@ AlexPic.file.getFileName = function(iUrl){
     }
   }
 
-  if(nameExistFlag == 0){
+  if(nameExistFlag == 0){  
+     var pattern = /png|jpeg|gif|jpg/i;
      var t = new Date().getTime(); 
-     r = t + ".jpg";
+     var xhr = new XMLHttpRequest();
+     xhr.open("GET",iUrl,false);
+     xhr.send();
+     var xhrR = xhr.getAllResponseHeaders();
+     var match = pattern.exec(xhrR);
+     if(match[0]){
+      r = t + "." + match[0];
+     }else{
+      r = t + ".jpg";
+     }
   }else{
      r = fileName;
   }
-  
   return r;
   
+}
+AlexPic.file.saveImgs = function(imgs){
+    var fp = this.getFp();    
+    var fpreturn = fp.show();
+    alert(fp.file.path);
+    if (fpreturn == 0) {        
+        for (var i = 0; i < imgs.length; i++) {
+          this.save(imgs[i],this.getFileName(imgs[i]),fp.file.path);
+        }
+        AlexPic.noti.showToast("ok");
+    }    
+}
+AlexPic.file.getFp = function(){
+    var nsIFilePicker = Components.interfaces.nsIFilePicker;
+    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+    fp.init(window, "ok", nsIFilePicker.modeGetFolder);
+    return fp;
 }

@@ -8,6 +8,7 @@
   <script src="find.js"/>
   <script src="notifications.js"/>
   <script src="upload.js"/>
+  <script src="filter.js"/>
   <script src="init.js"/>
   
 
@@ -21,8 +22,11 @@
                        image="chrome://alexpic/skin/menuitem.png">
       <menupopup>
         <menuitem  label="&alexpic.ooi_pic_copy;"                                       
-                   oncommand="AlexPic.file.complete(new Find(gContextMenu.target))">           
-        </menuitem>
+                   oncommand="AlexPic.file.complete(AlexPic.filter.getImgSrc(gContextMenu.target))">           
+                   </menuitem>
+        <menuitem  label="&alexpic.ooi_pics_download;"                                       
+                   oncommand="AlexPic.file.saveImgs(AlexPic.filter.getImgsSrc(gContextMenu.target))">           
+                  </menuitem>
       </menupopup>
     </menu>            
   </menupopup>           
