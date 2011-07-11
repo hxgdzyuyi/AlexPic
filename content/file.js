@@ -34,7 +34,7 @@ File.save = function(iUrl,oFileName,oDir,cbComplete){
       var filepath = oDir + '\\' + oFileName;
 
       if(typeof cbComplete == "function"){
-        cbComplete.call(this,filepath);
+       cbComplete.call(this,filepath);
       }
     }
   }; //observer
