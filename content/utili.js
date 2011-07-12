@@ -28,4 +28,11 @@ function $$(){
   
 }
 
+function win2bottom(){
+  alert("a");
+  var win =  window.getBrowser().selectedBrowser.contentWindow;
+  var event = document.createEvent("MouseEvent");
+  event.initMouseEvent("DOMMouseScroll",true, null, window,0,0,0,0,win.pageYOffset,false,false,false,false,0,null);
+  win.dispatchEvent(event);  
 
+}

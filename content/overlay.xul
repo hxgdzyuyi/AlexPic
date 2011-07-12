@@ -9,6 +9,7 @@
   <script src="notifications.js"/>
   <script src="upload.js"/>
   <script src="filter.js"/>
+  <script src="progress.js"/>
   <script src="init.js"/>
   
 
@@ -25,7 +26,7 @@
                    oncommand="AlexPic.file.complete(AlexPic.filter.getImgSrc(gContextMenu.target))">           
                    </menuitem>
         <menuitem  label="&alexpic.ooi_pics_download;"                                       
-                   oncommand="AlexPic.file.saveImgs(AlexPic.filter.getImgsSrc(gContextMenu.target))">           
+                   oncommand="AlexPic.file.saveImgs(AlexPic.filter.getImgsSrc(gContextMenu.target,1))">           
                   </menuitem>
       </menupopup>
     </menu>            
@@ -37,7 +38,16 @@
               image="chrome://alexpic/skin/menuitem.png"
               oncommand="AlexPic.upload.submit(new Find(gContextMenu.target))">           
      </menuitem>           
-  </menupopup>                
+   </menupopup>  
+   <!-- status bar -->
+   <statusbar id="status-bar">
+   <statusbarpanel id="o_progress"
+     label="downloading 2%"
+     tooltiptext="AlexPic download"     
+   />
+  </statusbar>
+   
+
   
 
  

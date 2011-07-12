@@ -9,8 +9,22 @@ File.getTempDir = function(){
   var r = file.path;
   return r;  
 }
-
-File.save = function(iUrl,oFileName,oDir,cbComplete){
+File.save = function(iUrl,oFileName,oDir,progressListener){
+  var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"]
+              .createInstance(Components.interfaces.nsIWebBrowserPersist);
+  var file = Components.classes["@mozilla.org/file/local;1"]
+              .createInstance(Components.interfaces.nsILocalFile);
+  file.initWithPath(oDir);
+  file.appendRelativePath(oFileName);
+  var obj_URI = Components.classes["@mozilla.org/network/io-service;1"]
+	              .getService(Components.interfaces.nsIIOService)
+	              .newURI(iUrl, null, null);
+  persist.progressListener = progressListener;
+  persist.saveURI(obj_URI, null, null, null, "", file);
+  
+  
+}
+File.save2 = function(iUrl,oFileName,oDir,cbComplete){
   var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
   var iUri = ios.newURI(iUrl , null , null);
   var channel = ios.newChannelFromURI(iUri);
@@ -70,15 +84,10 @@ AlexPic.file.complete = function(saveSrc){
   if(gPasteFilePath.length > 3 ){
     this.remove(gPasteFilePath);
   }  
-  alert(saveSrc);
   var saveFileName = this.getFileName(saveSrc);
   
-  //const nsIFilePicker = Components.interfaces.nsIFilePicker;
-  //var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-  //fp.init(window, "asdf", nsIFilePicker.modeGetFolder);
-  //fp.show();
   var oDir = this.getTempDir();
-  this.save(saveSrc,saveFileName,oDir
+  this.save2(saveSrc,saveFileName,oDir
     ,function(filepath){        
       gPasteFilePath = filepath;
       gPasteFilePathFlag = 1;
@@ -126,15 +135,52 @@ AlexPic.file.getFileName = function(iUrl){
   
 }
 AlexPic.file.saveImgs = function(imgs){
-    var fp = this.getFp();    
-    var fpreturn = fp.show();
-    alert(fp.file.path);
-    if (fpreturn == 0) {        
-        for (var i = 0; i < imgs.length; i++) {
-          this.save(imgs[i],this.getFileName(imgs[i]),fp.file.path);
+    //win2bottom();
+    if(gIsRunning == 1){
+    }else{
+      gIsRunning = 1;
+      AlexPic.progress.init();
+      var fp = this.getFp();    
+      var fpreturn = fp.show();
+      var totalImgNum = imgs.length;
+      var downloadedImgNum = 1;
+      var progressListener = { 
+        onProgressChange: function(aWebProgress, aRequest, aCurSelfProgress, aMaxSelfProgress, aCurTotalProgress, aMaxTotalProgress) {
+        },
+
+
+        onStateChange: function(aWebProgress, aRequest, aStateFlags, aStatus) {
+          if((aStateFlags & 0x00000010 ) == 0x00000010 ){
+            //State is STATE_STOP 
+            //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
+            
+            if(downloadedImgNum == totalImgNum){
+                        
+              gIsRunning = 0;
+              AlexPic.noti.showToast("ok");
+
+            }else{
+              AlexPic.progress.setText("DownLoaded "+downloadedImgNum+"/"+totalImgNum);
+              downloadedImgNum++;
+            }
+            
+          }
+          
         }
-        AlexPic.noti.showToast("ok");
-    }    
+        
+      };
+      //alert(fp.file.path);
+      if (fpreturn == 0) {        
+          for (var i = 0; i < imgs.length; i++) {
+            this.save(imgs[i],this.getFileName(imgs[i]),fp.file.path,progressListener);
+          }
+         
+      }else{
+        gIsRunning = 0;
+      }    
+      }//if(gisRunning == 1) end 
+    
+  
 }
 AlexPic.file.getFp = function(){
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
