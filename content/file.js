@@ -66,6 +66,14 @@ File.getFileFormPath = function(filePath){
   file.initWithPath(filePath);
   return file;  
 }
+File.getPath = function(oDir,oFileName){
+  var file = Components.classes["@mozilla.org/file/local;1"]
+              .createInstance(Components.interfaces.nsILocalFile);
+  file.initWithPath(oDir);
+  file.appendRelativePath(oFileName);
+  return file.persistentDescriptor;
+
+}
 
 File.remove = function(filePath){
   var file = this.getFileFormPath(filePath);
@@ -80,21 +88,6 @@ File.remove = function(filePath){
 
 AlexPic.file = Object.create(File);
 
-AlexPic.file.complete = function(saveSrc){
-  if(gPasteFilePath.length > 3 ){
-    this.remove(gPasteFilePath);
-  }  
-  var saveFileName = this.getFileName(saveSrc);
-  
-  var oDir = this.getTempDir();
-  this.save2(saveSrc,saveFileName,oDir
-    ,function(filepath){        
-      gPasteFilePath = filepath;
-      gPasteFilePathFlag = 1;
-      AlexPic.noti.showToast("You can use AlexPic Paste");
-      //alert("ok");
-  });
-}
 
 AlexPic.file.getFileName = function(iUrl){
   var r = "";
@@ -134,6 +127,40 @@ AlexPic.file.getFileName = function(iUrl){
   return r;
   
 }
+
+AlexPic.file.saveImg = function(saveSrc){
+
+  if(gPasteFilePath.length > 3 ){
+    this.remove(gPasteFilePath);
+  }  
+  var saveFileName = this.getFileName(saveSrc);
+  var oDir = this.getTempDir();
+
+  var progressListener = { 
+        onProgressChange: function(aWebProgress, aRequest, aCurSelfProgress, aMaxSelfProgress, aCurTotalProgress, aMaxTotalProgress) {
+        },
+
+
+        onStateChange: function(aWebProgress, aRequest, aStateFlags, aStatus) {
+          if((aStateFlags & 0x00000010 ) == 0x00000010 ){
+            //State is STATE_STOP 
+            //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
+              AlexPic.noti.showToast("ok");          
+          }
+          
+        }
+        
+  };
+
+  this.save(saveSrc,saveFileName,oDir
+    ,progressListener);
+  
+  var filepath = this.getPath(oDir,saveFileName);
+  gPasteFilePath = filepath;
+  gPasteFilePathFlag = 1;
+  AlexPic.noti.showToast("You can use AlexPic Paste");
+}
+
 AlexPic.file.saveImgs = function(imgs){
     //win2bottom();
     if(gIsRunning == 1){

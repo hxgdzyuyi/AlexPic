@@ -23,7 +23,7 @@
                        image="chrome://alexpic/skin/menuitem.png">
       <menupopup>
         <menuitem  label="&alexpic.ooi_pic_copy;"                                       
-                   oncommand="AlexPic.file.complete(AlexPic.filter.getImgSrc(gContextMenu.target))">           
+                   oncommand="AlexPic.file.saveImg(AlexPic.filter.getImgSrc(gContextMenu.target))">           
                    </menuitem>
         <menuitem  label="&alexpic.ooi_pics_download;"                                       
                    oncommand="AlexPic.file.saveImgs(AlexPic.filter.getImgsSrc(gContextMenu.target,1))">           
