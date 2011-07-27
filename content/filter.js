@@ -78,11 +78,13 @@ getXpath:function(node){
     sX.push("/"+p.nodeName);
     p = p.parentNode;
   }
-  if(p.nodeName == "p"){
-  while(p.getElementsByTagName("img").length == 1){    
+  
+  if(p.nodeName.toLowerCase() == "p"){
+  
+  do{    
     sX.push("/"+p.nodeName);
     p = p.parentNode;
-  }
+  }while(p.getElementsByTagName("img").length == 1)
   }
   sX = sX.reverse();
   r["xpath"] = sX.join("").toLowerCase();
@@ -132,7 +134,9 @@ getImgsSrc:function(node,type){
     var opt = this.getXpath2(node);
   }
   var xpathEx = opt["xpath"].substring(1);
+  //alert(xpathEx);
   var contextNode = opt["rootNode"];
+  //alert(contextNode.nodeName);
   var typeUrl = opt["typeUrl"];
   //alert(xpathEx);
   var imgs = new Array();

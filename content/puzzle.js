@@ -86,8 +86,9 @@ AlexPic.puzzle.savePuzzle = function (imgs) {
 AlexPic.puzzle.copyPuzzle = function (imgs) {
   if( gIsRunning == 1 )
   {}else{
+       gIsRunning = 1;
        if(gPasteFilePath.length > 3 ){
-       this.remove(gPasteFilePath);
+        AlexPic.file.remove(gPasteFilePath);
        } 
         var doc = window.getBrowser().selectedBrowser.contentDocument;
         var saveFileName = doc.domain + ".jpg";
@@ -105,8 +106,10 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
             if((aStateFlags & 0x00000010 ) == 0x00000010 ){
               //State is STATE_STOP 
               //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
+               gIsRunning = 0;
+               
                AlexPic.noti.showToast("You can use AlexPic Paste");
-                gIsRunning = 0;
+               
             }
 
           }
@@ -119,7 +122,7 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
         gPasteFilePath = filepath;
         gPasteFilePathFlag = 1;
         
-  }//gIsRunnning end         
+  }//gIsRunnning end   
 }
 
 
