@@ -18,9 +18,12 @@ File.save = function(iUrl,oFileName,oDir,progressListener){
   file.appendRelativePath(oFileName);
   var obj_URI = Components.classes["@mozilla.org/network/io-service;1"]
 	              .getService(Components.interfaces.nsIIOService)
-	              .newURI(iUrl, null, null);
+	              .newURI(iUrl, "UTF8", null);
+  persist.persistFlags = Components.interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_REPLACE_EXISTING_FILES;
+  persist.persistFlags = Components.interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
+ 
   persist.progressListener = progressListener;
-  persist.saveURI(obj_URI, null, null, null, "", file);
+  persist.saveURI(obj_URI, null, null, null, null, file);
   
   
 }
@@ -128,7 +131,7 @@ AlexPic.file.getFileName = function(iUrl){
   
 }
 
-AlexPic.file.saveImg = function(saveSrc){
+AlexPic.file.copyImg = function(saveSrc){
 
   if(gPasteFilePath.length > 3 ){
     this.remove(gPasteFilePath);
@@ -145,7 +148,7 @@ AlexPic.file.saveImg = function(saveSrc){
           if((aStateFlags & 0x00000010 ) == 0x00000010 ){
             //State is STATE_STOP 
             //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
-              AlexPic.noti.showToast("ok");          
+             AlexPic.noti.showToast("You can use AlexPic Paste");
           }
           
         }
@@ -158,7 +161,7 @@ AlexPic.file.saveImg = function(saveSrc){
   var filepath = this.getPath(oDir,saveFileName);
   gPasteFilePath = filepath;
   gPasteFilePathFlag = 1;
-  AlexPic.noti.showToast("You can use AlexPic Paste");
+ 
 }
 
 AlexPic.file.saveImgs = function(imgs){
@@ -185,12 +188,12 @@ AlexPic.file.saveImgs = function(imgs){
                         
               gIsRunning = 0;
               AlexPic.noti.showToast("ok");
-
+              
             }else{
-              AlexPic.progress.setText("DownLoaded "+downloadedImgNum+"/"+totalImgNum);
+             
               downloadedImgNum++;
             }
-            
+           AlexPic.progress.setText("DownLoaded "+downloadedImgNum+"/"+totalImgNum); 
           }
           
         }
