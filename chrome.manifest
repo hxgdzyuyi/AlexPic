@@ -1,6 +1,6 @@
 content   alexpic                 content/
 skin      alexpic   classic/1.0   skin/
 locale    alexpic   zh-CN         locale/zh-CN/
-
+locale    alexpic   en-US         locale/en-US/
 
 overlay   chrome://browser/content/browser.xul   chrome://alexpic/content/overlay.xul

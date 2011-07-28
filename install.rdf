@@ -4,9 +4,9 @@
     <em:id>hxgdzyuyi@gmail.com</em:id>
     <em:type>2</em:type>
     <em:name>AlexPic</em:name>
-    <em:version>2.2</em:version>
+    <em:version>2.4</em:version>
     <em:creator>hxgdzyuyi</em:creator>
-    <em:contributor></em:contributor>
+    <em:contributor>hxgdzyuyi</em:contributor>
     <em:description>AlexPic</em:description>
     <em:aboutURL>chrome://alexpic/content/about.xul</em:aboutURL>
     <em:optionsURL>chrome://alexpic/content/options.xul</em:optionsURL>
