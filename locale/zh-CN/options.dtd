@@ -1,0 +1,4 @@
+﻿<!ENTITY alexpic.fp_path "设置">
+<!ENTITY alexpic.fp_path_label "设置保存图片时的默认起始文件夹">
+<!ENTITY alexpic.save_order_name "是否在保存图片时，让文件名按照文件在页面顺序保存">
+<!ENTITY alexpic.save_order_name_label "保存图片时，让文件名按照文件在页面顺序保存 例如 1.jpg 2.jpg">
