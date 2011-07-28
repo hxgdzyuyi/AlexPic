@@ -148,7 +148,7 @@ AlexPic.file.copyImg = function(saveSrc){
           if((aStateFlags & 0x00000010 ) == 0x00000010 ){
             //State is STATE_STOP 
             //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
-             AlexPic.noti.showToast("You can use AlexPic Paste");
+             AlexPic.noti.showToast(AlexPic.locale.pic_copy_ok);
           }
           
         }
@@ -187,13 +187,13 @@ AlexPic.file.saveImgs = function(imgs){
             if(downloadedImgNum == totalImgNum){
                         
               gIsRunning = 0;
-              AlexPic.noti.showToast("ok");
-              AlexPIc.progress.hide();
+              AlexPic.noti.showToast(AlexPic.locale.pic_download_ok);
+              AlexPic.progress.hide();
             }else{
              
               downloadedImgNum++;
             }
-           AlexPic.progress.setText("DownLoaded "+downloadedImgNum+"/"+totalImgNum); 
+           AlexPic.progress.setText(AlexPic.locale.download_info + " " + downloadedImgNum+"/"+totalImgNum); 
           }
           
         }
@@ -217,10 +217,15 @@ AlexPic.file.saveImgs = function(imgs){
     
   
 }
-AlexPic.file.getFp = function(){
+AlexPic.file.getFp = function(filePickName){
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-    fp.init(window, "", nsIFilePicker.modeGetFolder);
+    if(filePickName){
+      fp.init(window, filePickName , nsIFilePicker.modeGetFolder);
+    }else{
+      fp.init(window, AlexPic.locale.fp_name, nsIFilePicker.modeGetFolder);
+    }
+    
     
     if(AlexPic.pref.hasPref("filepickfile")){
       fp.displayDirectory = AlexPic.pref.getFpFile();

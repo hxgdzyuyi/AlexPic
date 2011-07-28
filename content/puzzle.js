@@ -66,7 +66,7 @@ AlexPic.puzzle.savePuzzle = function (imgs) {
             if((aStateFlags & 0x00000010 ) == 0x00000010 ){
               //State is STATE_STOP 
               //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
-                AlexPic.noti.showToast("ok");
+                AlexPic.noti.showToast(AlexPic.locale.pic_download_ok);
                 gIsRunning = 0;
             }
 
@@ -108,7 +108,7 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
               //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
                gIsRunning = 0;
                
-               AlexPic.noti.showToast("You can use AlexPic Paste");
+               AlexPic.noti.showToast(AlexPic.locale.pic_copy_ok);
                
             }
 

@@ -8,11 +8,13 @@
   <groupbox align="center" orient="horizontal">
     <vbox>
       <text value="AlexPic" style="font-weight: bold; font-size: x-large;"/>
-      <text value="&version; 1.0"/>
+      <text value="&version; 2.3"/>
       <separator class="thin"/>
       <text value="&createdBy;" style="font-weight: bold;"/>
       <text value="hxgdzyuyi"/>
       <separator class="thin"/>
+      <text value="&homepage;" style="font-weight: bold;"/>
+      <a href="http://www.alex-album.com">www.alex-album.com</a>
     </vbox>
   </groupbox>
 </dialog>

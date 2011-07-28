@@ -12,6 +12,7 @@
   <script src="progress.js"/>
   <script src="puzzle.js"/>
   <script src="pref.js"/>
+  <script src="locale.js"/>
   <script src="init.js"/>
   
 

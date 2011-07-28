@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <!DOCTYPE dialog SYSTEM "chrome://alexpic/locale/options.dtd">
-
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         id="saveimageinfolderSetFolder"
         minwidth="450"
@@ -9,7 +8,7 @@
         ondialogaccept="onDialogAccept();"
         ondialogcancel="onDialogCancel();"
         buttons="accept,cancel"
-        title="ok">
+        title="setting">
         <script src="gheader.js"/>
         <script src="file.js"/>
         <script src="pref.js"/>
@@ -17,18 +16,18 @@
       
 
         <hbox>
-            <label value="label1" />
+            <label value="&alexpic.fp_path_label;" />
         </hbox>
         <hbox>
            <textbox  readonly="true" width="450px" id="path"/>
-           <button  id="pickFolder" label="" oncommand="onPickFolder();"/>
+           <button  id="pickFolder" label="&alexpic.fp_path;" oncommand="onPickFolder();"/>
 
          </hbox>
         <hbox>
-            <label value="label1" />
+            <label value="&alexpic.save_order_name_label;" />
         </hbox>
         <hbox>
-           <checkbox label="My" id="isOrderFileName"/>
+           <checkbox label="&alexpic.save_order_name;" id="isOrderFileName"/>
         </hbox> 
 </dialog>
 

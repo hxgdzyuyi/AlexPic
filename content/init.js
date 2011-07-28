@@ -1,7 +1,8 @@
 AlexPic.init= {
-  showItem:function(){
+  loadInit:function(){
     var menu = document.getElementById("contentAreaContextMenu");    
     menu.addEventListener("popupshowing",AlexPic.init.showImageContext,false);
+    AlexPic.locale.init();
   },
   showImageContext:function(){    
     $("#ooi_pic").hidden = true;
@@ -22,5 +23,5 @@ AlexPic.init= {
   }                   
 };
 AlexPic.upload = Upload;
-window.addEventListener("load",AlexPic.init.showItem,false);
+window.addEventListener("load",AlexPic.init.loadInit,false);
 window.addEventListener("unload",AlexPic.init.closeWindow,false);
