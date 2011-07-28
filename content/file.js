@@ -169,7 +169,7 @@ AlexPic.file.saveImgs = function(imgs){
     if(gIsRunning == 1){
     }else{
       gIsRunning = 1;
-      AlexPic.progress.init();
+      AlexPic.progress.show();
       var fp = this.getFp();    
       var fpreturn = fp.show();
       var totalImgNum = imgs.length;
@@ -188,7 +188,7 @@ AlexPic.file.saveImgs = function(imgs){
                         
               gIsRunning = 0;
               AlexPic.noti.showToast("ok");
-              
+              AlexPIc.progress.hide();
             }else{
              
               downloadedImgNum++;
@@ -202,7 +202,12 @@ AlexPic.file.saveImgs = function(imgs){
       //alert(fp.file.path);
       if (fpreturn == 0) {        
           for (var i = 0; i < imgs.length; i++) {
-            this.save(imgs[i],this.getFileName(imgs[i]),fp.file.path,progressListener);
+            var saveFileName = this.getFileName(imgs[i]);
+           
+            if(AlexPic.pref.isTrue("isOrderFileName")){
+              saveFileName = i + saveFileName.substr(saveFileName.lastIndexOf("."));
+            }
+            this.save(imgs[i],saveFileName,fp.file.path,progressListener);
           }
          
       }else{
@@ -215,6 +220,11 @@ AlexPic.file.saveImgs = function(imgs){
 AlexPic.file.getFp = function(){
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-    fp.init(window, "ok", nsIFilePicker.modeGetFolder);
+    fp.init(window, "", nsIFilePicker.modeGetFolder);
+    
+    if(AlexPic.pref.hasPref("filepickfile")){
+      fp.displayDirectory = AlexPic.pref.getFpFile();
+    }
+   
     return fp;
 }

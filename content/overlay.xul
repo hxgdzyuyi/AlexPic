@@ -11,6 +11,7 @@
   <script src="filter.js"/>
   <script src="progress.js"/>
   <script src="puzzle.js"/>
+  <script src="pref.js"/>
   <script src="init.js"/>
   
 

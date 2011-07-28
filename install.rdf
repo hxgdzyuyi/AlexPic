@@ -9,6 +9,7 @@
     <em:contributor></em:contributor>
     <em:description>AlexPic</em:description>
     <em:aboutURL>chrome://alexpic/content/about.xul</em:aboutURL>
+    <em:optionsURL>chrome://alexpic/content/options.xul</em:optionsURL>
     <em:iconURL>chrome://alexpic/skin/alexpic_s.png</em:iconURL>
     <em:targetApplication>
       <Description>

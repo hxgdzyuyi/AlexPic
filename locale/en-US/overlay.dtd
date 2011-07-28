@@ -1,8 +1,5 @@
-<!ENTITY alexpic.label "Your localized menuitem">
-<!ENTITY alexpicContext.label "Your Menuitem">
-<!ENTITY alexpicContext.accesskey "Y">
-<!ENTITY alexpicToolbarButton.label "Your Toolbar Button">
-<!ENTITY alexpicToolbarButton.tooltip "This is your toolbar button!">
-<!ENTITY alexpicSidebar.label "Your Sidebar">
-<!ENTITY alexpicToolbar.name  "example">
-<!ENTITY alexpicToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &alexpicToolbar.name;">
+<!ENTITY alexpic.ooi_pic "AlexPic">
+<!ENTITY alexpic.ooi_pic_copy "AlexPic Copy">
+<!ENTITY alexpic.ooi_pics_download "AlexPic Download">
+<!ENTITY alexpic.ooi_pics_mergedownload "AlexPic Merge Download">
+<!ENTITY alexpic.o_pics_paste "AlexPic Merge Paste">
