@@ -1,0 +1,4 @@
+<!ENTITY alexpic.fp_path "set a folder path">
+<!ENTITY alexpic.fp_path_label "set a folder path">
+<!ENTITY alexpic.save_order_name "save the images by the order filename">
+<!ENTITY alexpic.save_order_name_label "save the images by the order filename, such as1.jpg 2.jpg">
