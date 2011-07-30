@@ -12,6 +12,7 @@
         <script src="gheader.js"/>
         <script src="file.js"/>
         <script src="pref.js"/>
+        <script src="locale.js"/>
         <script src="options.js"/>
       
 

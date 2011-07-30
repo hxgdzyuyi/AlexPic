@@ -17,11 +17,10 @@ function onLoad(){
 }
 
 function onPickFolder(){
-    
     var fp = AlexPic.file.getFp();
     var fpreturn = fp.show();
     if(fpreturn == 0){
-      document.getElementById('path').value= fp.file.path;
+      document.getElementById('path').value = fp.file.path;
       AlexPic.pref.setFpFile(fp.file);// setFpPath(iFile)
       
     }

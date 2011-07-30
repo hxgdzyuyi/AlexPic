@@ -220,6 +220,7 @@ AlexPic.file.saveImgs = function(imgs){
 AlexPic.file.getFp = function(filePickName){
     var nsIFilePicker = Components.interfaces.nsIFilePicker;
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+
     if(filePickName){
       fp.init(window, filePickName , nsIFilePicker.modeGetFolder);
     }else{
