@@ -30,7 +30,8 @@ ifImgUrl:function(iUrl){
        iUrl = iUrl.substring(iUrl.lastIndexOf('.')+1);
        var pattern = /png|jpeg|gif|jpg/i;
        var match = pattern.exec(iUrl);
-       if(match[0]){         
+       if(match != null){ 
+        
        }else{
         r = false;
        }
@@ -115,11 +116,12 @@ getXpath2:function(node){
     sX.push("/"+p.nodeName);
     p = p.parentNode;
   }
-  if(p.nodeName == "p"){
-  while(p.getElementsByTagName("img").length == 1){    
+  if(p.nodeName.toLowerCase() == "p"){
+  
+  do{    
     sX.push("/"+p.nodeName);
     p = p.parentNode;
-  }
+  }while(p.getElementsByTagName("img").length == 1)
   }
   sX = sX.reverse();
   r["xpath"] = sX.join("").toLowerCase();

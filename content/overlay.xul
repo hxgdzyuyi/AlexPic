@@ -32,10 +32,10 @@
                    oncommand="AlexPic.file.saveImgs(AlexPic.filter.getImgsSrc(gContextMenu.target,1))">           
                  </menuitem>
         <menuitem  label="&alexpic.ooi_pics_mergedownload;"                                       
-                   oncommand="AlexPic.puzzle.savePuzzle(AlexPic.filter.getImgsSrc(gContextMenu.target,1))">           
+                   oncommand="AlexPic.puzzle.savePuzzle(AlexPic.filter.getImgsSrc(gContextMenu.target,0))">           
                  </menuitem>
          <menuitem  label="&alexpic.ooi_pics_mergecopy;"                                       
-                   oncommand="AlexPic.puzzle.copyPuzzle(AlexPic.filter.getImgsSrc(gContextMenu.target,1))">           
+                   oncommand="AlexPic.puzzle.copyPuzzle(AlexPic.filter.getImgsSrc(gContextMenu.target,0))">           
                   </menuitem>
       </menupopup>
     </menu>            

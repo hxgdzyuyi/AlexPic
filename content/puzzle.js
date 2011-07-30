@@ -49,11 +49,17 @@ var Puzzle = {
 AlexPic.puzzle = Object.create(Puzzle);
 
 AlexPic.puzzle.savePuzzle = function (imgs) {
+   
   if( gIsRunning == 1 )
   {}else{
-        var canvas = this.mergepic(imgs);
-        var fp = AlexPic.file.getFp();
-        var fpreturn = fp.show();
+        try{  
+          var canvas = this.mergepic(imgs);       
+          var fp = AlexPic.file.getFp();
+          var fpreturn = fp.show();}
+        catch(e){
+          AlexPic.noti.showToast(AlexPic.locale.error);
+          gIsRunning = 0;
+        }        
         var doc = window.getBrowser().selectedBrowser.contentDocument;
         if (fpreturn == 0) {         
           var progressListener = { 
@@ -94,8 +100,14 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
         var saveFileName = doc.domain + ".jpg";
         
         var oDir = AlexPic.file.getTempDir();
-
-        var canvas = this.mergepic(imgs);
+        try{  
+          var canvas = this.mergepic(imgs);       
+        }
+        catch(e){
+          AlexPic.noti.showToast(AlexPic.locale.error);
+          gIsRunning = 0;
+        }    
+       
         var progressListener = { 
 
           onProgressChange: function(aWebProgress, aRequest, aCurSelfProgress, aMaxSelfProgress, aCurTotalProgress, aMaxTotalProgress) {
