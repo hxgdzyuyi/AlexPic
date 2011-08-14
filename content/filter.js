@@ -145,7 +145,7 @@ getImgsSrc:function(node,type){
   //alert(contextNode.nodeName);
   //alert(contextNode);
   var doc =  window.getBrowser().selectedBrowser.contentDocument;
-  var tempImg = doc.createElement("img");
+  var tempImg = doc.createElementNS(AlexPic.ns.html,"img");
   var iterator = doc.evaluate(xpathEx,
       contextNode, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
   if(opt["typeUrl"] == "original"){

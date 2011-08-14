@@ -25,9 +25,9 @@ var Puzzle = {
         var cw = this.maxwidth(imgs);
         var ch = this.maxheight(imgs);
         var doc = window.getBrowser().selectedBrowser.contentDocument;        
-        var canvas = doc.createElement('CANVAS');
-        canvas.setAttribute('width', cw + 10);
-        canvas.setAttribute('height', ch);        
+        var canvas = doc.createElementNS(AlexPic.ns.html, "canvas");
+        canvas.setAttributeNS(null,"width", cw + 10);
+        canvas.setAttributeNS(null,"height", ch);        
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0,0,cw + 10 , ch);
