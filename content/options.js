@@ -1,8 +1,9 @@
-function onDialogCancel()
+AlexPic.opt = {}
+AlexPic.opt.onDialogCancel = function()
 {
   
 }
-function onDialogAccept()
+AlexPic.opt.onDialogAccept = function()
 { 
   if(document.getElementById("isOrderFileName").checked == true){
      AlexPic.pref.setBool("isOrderFileName",true);
@@ -11,12 +12,12 @@ function onDialogAccept()
   }
 }
 
-function onLoad(){
+AlexPic.opt.onLoad = function(){
   document.getElementById('path').value =  AlexPic.pref.getFpPath();
   document.getElementById("isOrderFileName").checked = AlexPic.pref.isTrue("isOrderFileName");
 }
 
-function onPickFolder(){
+AlexPic.opt.onPickFolder = function(){
     var fp = AlexPic.file.getFp();
     var fpreturn = fp.show();
     if(fpreturn == 0){

@@ -1,19 +1,19 @@
-var Upload = {};
-Upload.paste = function(){
+AlexPic.mod.upload = {};
+AlexPic.mod.upload.paste = function(){
   
 }
-Upload.node = null;
+AlexPic.mod.upload.node = null;
 
-Upload.submit = function(find){  
+AlexPic.mod.upload.submit = function(find){  
   this.node = find.getInputFile();
 
   if(find.findFlag == 1){    
-    this.node.value = gPasteFilePath; 	
+    this.node.value = AlexPic.gPasteFilePath; 	
     this.simulateChange(this.node);
   }
 }
 
-Upload.simulateClick = function(node){
+AlexPic.mod.upload.simulateClick = function(node){
   var event = node.ownerDocument.createEvent("MouseEvents");  
               event.initMouseEvent("click",
                                  true, // can bubble
@@ -27,7 +27,7 @@ Upload.simulateClick = function(node){
                                  node);  
              node.dispatchEvent(event);
 }
-Upload.simulateChange = function(node){
+AlexPic.mod.upload.simulateChange = function(node){
    var event = node.ownerDocument.createEvent("HTMLEvents");  
        event.initEvent("change",true,true);
        node.dispatchEvent(event);

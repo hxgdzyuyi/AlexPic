@@ -4,9 +4,9 @@
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         id="saveimageinfolderSetFolder"
         minwidth="450"
-        onload="onLoad();"
-        ondialogaccept="onDialogAccept();"
-        ondialogcancel="onDialogCancel();"
+        onload="AlexPic.opt.onLoad();"
+        ondialogaccept="AlexPic.opt.onDialogAccept();"
+        ondialogcancel="AlexPic.opt.onDialogCancel();"
         buttons="accept,cancel"
         title="setting">
         <script src="gheader.js"/>
@@ -21,7 +21,7 @@
         </hbox>
         <hbox>
            <textbox  readonly="true" width="450px" id="path"/>
-           <button  id="pickFolder" label="&alexpic.fp_path;" oncommand="onPickFolder();"/>
+           <button  id="pickFolder" label="&alexpic.fp_path;" oncommand="AlexPic.opt.onPickFolder();"/>
 
          </hbox>
         <hbox>

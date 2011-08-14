@@ -1,4 +1,4 @@
-var Puzzle = {
+AlexPic.mod.puzzle = {
   maxwidth: function (imgs) {
         var ret = 0;
         for (num in imgs) {
@@ -46,11 +46,11 @@ var Puzzle = {
     }
 }
 
-AlexPic.puzzle = Object.create(Puzzle);
+AlexPic.puzzle = Object.create(AlexPic.mod.puzzle);
 
 AlexPic.puzzle.savePuzzle = function (imgs) {
    
-  if( gIsRunning == 1 )
+  if( AlexPic.gIsRunning == 1 )
   {}else{
         try{  
           var canvas = this.mergepic(imgs);       
@@ -58,7 +58,7 @@ AlexPic.puzzle.savePuzzle = function (imgs) {
           var fpreturn = fp.show();}
         catch(e){
           AlexPic.noti.showToast(AlexPic.locale.error);
-          gIsRunning = 0;
+          AlexPic.gIsRunning = 0;
         }        
         var doc = window.getBrowser().selectedBrowser.contentDocument;
         if (fpreturn == 0) {         
@@ -73,7 +73,7 @@ AlexPic.puzzle.savePuzzle = function (imgs) {
               //State is STATE_STOP 
               //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
                 AlexPic.noti.showToast(AlexPic.locale.pic_download_ok);
-                gIsRunning = 0;
+                AlexPic.gIsRunning = 0;
             }
 
           }
@@ -84,17 +84,17 @@ AlexPic.puzzle.savePuzzle = function (imgs) {
         AlexPic.file.save(canvas.toDataURL("image/png", ""),doc.domain + '.png',fp.file.path,progressListener);
         }//if fpreturn == 0 end
         else{
-          gIsRunning = 0;
+          AlexPic.gIsRunning = 0;
         }
   }//gIsRunnning end         
 }
 
 AlexPic.puzzle.copyPuzzle = function (imgs) {
-  if( gIsRunning == 1 )
+  if( AlexPic.gIsRunning == 1 )
   {}else{
-       gIsRunning = 1;
-       if(gPasteFilePath.length > 3 ){
-        AlexPic.file.remove(gPasteFilePath);
+       AlexPic.gIsRunning = 1;
+       if(AlexPic.gPasteFilePath.length > 3 ){
+        AlexPic.file.remove(AlexPic.gPasteFilePath);
        } 
         var doc = window.getBrowser().selectedBrowser.contentDocument;
         var saveFileName = doc.domain + ".jpg";
@@ -105,7 +105,7 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
         }
         catch(e){
           AlexPic.noti.showToast(AlexPic.locale.error);
-          gIsRunning = 0;
+          AlexPic.gIsRunning = 0;
         }    
        
         var progressListener = { 
@@ -118,7 +118,7 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
             if((aStateFlags & 0x00000010 ) == 0x00000010 ){
               //State is STATE_STOP 
               //https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIWebProgressListener#onStateChange%28%29
-               gIsRunning = 0;
+               AlexPic.gIsRunning = 0;
                
                AlexPic.noti.showToast(AlexPic.locale.pic_copy_ok);
                
@@ -131,8 +131,8 @@ AlexPic.puzzle.copyPuzzle = function (imgs) {
 
         AlexPic.file.save(canvas.toDataURL("image/jpeg", ""),saveFileName,oDir,progressListener);
         var filepath = AlexPic.file.getPath(oDir,saveFileName);
-        gPasteFilePath = filepath;
-        gPasteFilePathFlag = 1;
+        AlexPic.gPasteFilePath = filepath;
+        AlexPic.gPasteFilePathFlag = 1;
         
   }//gIsRunnning end   
 }

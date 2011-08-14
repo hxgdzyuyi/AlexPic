@@ -1,4 +1,4 @@
-var Noti = {
+AlexPic.mod.noti = {
 showToast:function(text){
         var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
                             .getService(Components.interfaces.nsIAlertsService);
@@ -8,4 +8,4 @@ showToast:function(text){
 }
 }
 
-AlexPic.noti = Object.create(Noti);
+AlexPic.noti = Object.create(AlexPic.mod.noti);

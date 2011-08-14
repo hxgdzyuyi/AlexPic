@@ -45,7 +45,7 @@
     <menuitem id="o_pics_paste"  label="&alexpic.o_pics_paste;"
               class="menuitem-iconic"
               image="chrome://alexpic/skin/menuitem.png"
-              oncommand="AlexPic.upload.submit(new Find(gContextMenu.target))">           
+              oncommand="AlexPic.upload.submit(new AlexPic.find(gContextMenu.target))">           
      </menuitem>           
    </menupopup>  
    <!-- status bar -->

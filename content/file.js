@@ -1,7 +1,7 @@
-var File = {
+AlexPic.mod.file = {
 };
 
-File.getTempDir = function(){
+AlexPic.mod.file.getTempDir = function(){
   var file = Components.classes["@mozilla.org/file/directory_service;1"].
            getService(Components.interfaces.nsIProperties).
            get("ProfD", Components.interfaces.nsIFile);
@@ -9,7 +9,7 @@ File.getTempDir = function(){
   var r = file.path;
   return r;  
 }
-File.save = function(iUrl,oFileName,oDir,progressListener){
+AlexPic.mod.file.save = function(iUrl,oFileName,oDir,progressListener){
   var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"]
               .createInstance(Components.interfaces.nsIWebBrowserPersist);
   var file = Components.classes["@mozilla.org/file/local;1"]
@@ -27,7 +27,7 @@ File.save = function(iUrl,oFileName,oDir,progressListener){
   
   
 }
-File.save2 = function(iUrl,oFileName,oDir,cbComplete){
+AlexPic.mod.file.save2 = function(iUrl,oFileName,oDir,cbComplete){
   var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
   var iUri = ios.newURI(iUrl , null , null);
   var channel = ios.newChannelFromURI(iUri);
@@ -63,13 +63,13 @@ File.save2 = function(iUrl,oFileName,oDir,cbComplete){
   
 };
 
-File.getFileFormPath = function(filePath){
+AlexPic.mod.file.getFileFormPath = function(filePath){
   var file = Components.classes['@mozilla.org/file/local;1']
              .createInstance(Components.interfaces.nsILocalFile);
   file.initWithPath(filePath);
   return file;  
 }
-File.getPath = function(oDir,oFileName){
+AlexPic.mod.file.getPath = function(oDir,oFileName){
   var file = Components.classes["@mozilla.org/file/local;1"]
               .createInstance(Components.interfaces.nsILocalFile);
   file.initWithPath(oDir);
@@ -78,7 +78,7 @@ File.getPath = function(oDir,oFileName){
 
 }
 
-File.remove = function(filePath){
+AlexPic.mod.file.remove = function(filePath){
   var file = this.getFileFormPath(filePath);
 
   try{
@@ -89,7 +89,7 @@ File.remove = function(filePath){
 }
 
 
-AlexPic.file = Object.create(File);
+AlexPic.file = Object.create(AlexPic.mod.file);
 
 
 AlexPic.file.getFileName = function(iUrl){
@@ -133,8 +133,8 @@ AlexPic.file.getFileName = function(iUrl){
 
 AlexPic.file.copyImg = function(saveSrc){
 
-  if(gPasteFilePath.length > 3 ){
-    this.remove(gPasteFilePath);
+  if(AlexPic.gPasteFilePath.length > 3 ){
+    this.remove(AlexPic.gPasteFilePath);
   }  
   var saveFileName = this.getFileName(saveSrc);
   var oDir = this.getTempDir();
@@ -159,17 +159,16 @@ AlexPic.file.copyImg = function(saveSrc){
     ,progressListener);
   
   var filepath = this.getPath(oDir,saveFileName);
-  gPasteFilePath = filepath;
-  gPasteFilePathFlag = 1;
+  AlexPic.gPasteFilePath = filepath;
+  AlexPic.gPasteFilePathFlag = 1;
  
 }
 
 AlexPic.file.saveImgs = function(imgs){
     //win2bottom();
-    if(gIsRunning == 1){
+    if(AlexPic.gIsRunning == 1){
     }else{
-      gIsRunning = 1;
-      AlexPic.progress.show();
+      AlexPic.gIsRunning = 1;      
       var fp = this.getFp();    
       var fpreturn = fp.show();
       var totalImgNum = imgs.length;
@@ -186,7 +185,7 @@ AlexPic.file.saveImgs = function(imgs){
             
             if(downloadedImgNum == totalImgNum){
                         
-              gIsRunning = 0;
+              AlexPic.gIsRunning = 0;
               AlexPic.noti.showToast(AlexPic.locale.pic_download_ok);
               AlexPic.progress.hide();
             }else{
@@ -200,7 +199,8 @@ AlexPic.file.saveImgs = function(imgs){
         
       };
       //alert(fp.file.path);
-      if (fpreturn == 0) {        
+      if (fpreturn == 0) { 
+          AlexPic.progress.show();
           for (var i = 0; i < imgs.length; i++) {
             var saveFileName = this.getFileName(imgs[i]);
            
@@ -211,7 +211,7 @@ AlexPic.file.saveImgs = function(imgs){
           }
          
       }else{
-        gIsRunning = 0;
+        AlexPic.gIsRunning = 0;
       }    
       }//if(gisRunning == 1) end 
     

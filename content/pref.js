@@ -1,4 +1,4 @@
-var Pref = {
+AlexPic.mod.pref = {
   getPrefs:function(){
             
      var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.alexpic.");
@@ -6,7 +6,7 @@ var Pref = {
   }        
 }
 
-AlexPic.pref = Object.create(Pref);
+AlexPic.pref = Object.create(AlexPic.mod.pref);
 
 
 AlexPic.pref.getFpPath = function(){

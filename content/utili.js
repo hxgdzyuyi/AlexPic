@@ -1,4 +1,4 @@
-var $ = (function(){
+AlexPic.$ = (function(){
   var doc = document;
   function init(selector){
     var test = /^#?[\w\-_]+/ig,
@@ -24,10 +24,7 @@ var $ = (function(){
   return init;
 })();
 
-function $$(){
-  
-}
-
+/*
 function win2bottom(){
   alert("a");
   var win =  window.getBrowser().selectedBrowser.contentWindow;
@@ -36,3 +33,4 @@ function win2bottom(){
   win.dispatchEvent(event);  
 
 }
+*/
